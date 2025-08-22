@@ -2,26 +2,21 @@
 
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useCategory } from "@/Context/CategoryContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {setCategory} = useCategory()
 
   const categories = [
-    "India",
     "Business",
-    "Politics",
     "Sports",
     "Technology",
-    "Startups",
     "Entertainment",
-    "Hatke",
     "International",
-    "Automobile",
     "Science",
     "Travel",
-    "Miscellaneous",
-    "Fashion",
-    "Education",
+    "General",
     "Health & Fitness",
   ];
 
@@ -72,13 +67,16 @@ const Navbar = () => {
         <nav className="flex flex-col gap-3 text-gray-300">
           <p className="uppercase text-xs text-gray-400">Categories</p>
           {categories.map((cat) => (
-            <a
-              key={cat}
-              href="#"
-              className="hover:text-white transition-colors"
-            >
-              {cat}
-            </a>
+             <button
+             key={cat}
+             onClick={() => {
+               setCategory(cat);
+               setIsOpen(false);
+             }}
+             className="text-left hover:text-white transition-colors"
+           >
+             {cat}
+           </button>
           ))}
         </nav>
       </div>

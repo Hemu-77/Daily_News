@@ -14,10 +14,10 @@ const Footer = () => {
             <div className="bg-red-600 w-8 h-8 rounded flex items-center justify-center text-white font-bold">
               i
             </div>
-            <span className="text-xl font-semibold">inshorts</span>
+            <span className="text-xl font-semibold">CapitalHub</span>
           </div>
           <p className="mt-3 text-sm text-gray-400">
-            Inshorts Pte. Ltd.<br />©COPYRIGHT 2025
+            CapitalHub Pvt. Ltd.<br />©COPYRIGHT 2025
           </p>
         </div>
 

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useNews } from "@/Context/NewsContext";
+import { useCategory } from "@/Context/CategoryContext";
 
 type Article = {
   title: string;
@@ -18,14 +19,20 @@ export default function NewsFeed() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [visibleCount, setVisibleCount] = useState(10);
   const { setSelectedArticle } = useNews();
+  const { category } = useCategory();
+
+  console.log(category);
+  
 
   useEffect(() => {
     const fetchNews = async () => {
       try {
         const res = await fetch(
-          `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`
+          `https://newsapi.org/v2/top-headlines?country=us&category=${category.toLowerCase()}&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`
         );
         const data = await res.json();
+        console.log(data);
+        
         setArticles(data.articles || []);
       } catch (error) {
         console.error("Error fetching news:", error);
@@ -33,7 +40,7 @@ export default function NewsFeed() {
     };
 
     fetchNews();
-  }, []);
+  }, [category]);
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-6">
